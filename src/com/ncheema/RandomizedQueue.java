@@ -3,6 +3,7 @@ import java.util.Iterator;
 /**
  * Created by navjotcheema on 11/19/14.
  */
+
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] items;
     private int size;
