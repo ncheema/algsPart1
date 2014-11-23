@@ -1,5 +1,3 @@
-package com.ncheema;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -7,14 +5,14 @@ import java.util.NoSuchElementException;
  * Created by navjotcheema on 11/16/14.
  */
 public class Deque<Item> implements Iterable<Item> {
-
     private class Node {
+        private Node next;
+        private Node prev;
+        private Item item;
         public Node(Item item) {
             this.item = item;
         }
-        Node next;
-        Node prev;
-        Item item;
+
     }
 
 
@@ -65,6 +63,7 @@ public class Deque<Item> implements Iterable<Item> {
         last.prev = oldLast;
         last.next = null;
         if (oldLast != null) oldLast.next = last;
+        if (first == null) first = last;
         size++;
     }
     // delete and return the item at the front
@@ -73,7 +72,7 @@ public class Deque<Item> implements Iterable<Item> {
         Item item = first.item;
         if (first == last)  last = null;
         first = first.next;
-        if (first !=null ) first.prev = null;
+        if (first != null) first.prev = null;
         size--;
         return item;
     }
@@ -83,6 +82,7 @@ public class Deque<Item> implements Iterable<Item> {
         Item item = last.item;
         last = last.prev;
         if (last != null) last.next = null;
+        if (last == null) first = last;
         size--;
         return item;
     }
@@ -96,7 +96,7 @@ public class Deque<Item> implements Iterable<Item> {
         private Node current = first;
         @Override
         public boolean hasNext() {
-            return current != null ;
+            return current != null;
         }
 
         @Override
@@ -121,8 +121,8 @@ public class Deque<Item> implements Iterable<Item> {
             StdOut.println("Passed");
         }
         StdOut.println("Testing adding & removing First... ");
-        Integer i = new Integer(3);
-        deque.addFirst(i);
+
+  /*      deque.addFirst(5);
         deque.addFirst(1);
         StdOut.println("Size is: " + deque.size());
         StdOut.println("Removed: " + deque.removeFirst());
@@ -130,14 +130,37 @@ public class Deque<Item> implements Iterable<Item> {
         StdOut.println("Removed: " + deque.removeFirst());
         StdOut.println("Size is: " + deque.size());
 
-        StdOut.println("\nTesting adding & removing Last... ");
-        deque.addLast(2);
+       StdOut.println("\nTesting adding & removing Last... ");
+     */
+        deque.addFirst(1);
         deque.addLast(7);
+     //   StdOut.println("Removed: " + deque.removeFirst());
+     //   StdOut.println("Removed: " + deque.removeLast());
+      //  deque.addFirst(2);
+        deque.addFirst(3);
+        deque.addLast(7);
+        deque.addFirst(8);
+        deque.addLast(9);
+        deque.addLast(18);
 
-        StdOut.println("Removing element: "+deque.removeLast());
-        for (Integer temp: deque) {
+    //    StdOut.println("Removed: " + deque.removeFirst());
+
+        StdOut.println("Size is: " + deque.size());
+       // StdOut.println("Removing element: "+deque.removeLast());
+        for (int temp: deque) {
             StdOut.println(temp);
         }
 
+        StdOut.println("Removed: " + deque.removeLast());
+
+        StdOut.println("Removed: " + deque.removeLast());
+        StdOut.println("Removed: " + deque.removeFirst());
+        StdOut.println("Removed: " + deque.removeLast());
+        StdOut.println("Removed: " + deque.removeFirst());
+        StdOut.println("Size is: " + deque.size());
+        // StdOut.println("Removing element: "+deque.removeLast());
+        for (int temp: deque) {
+            StdOut.println(temp);
+        }
     }
 }
