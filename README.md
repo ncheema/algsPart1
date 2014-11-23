@@ -5,6 +5,18 @@ Algrothims Part 1
 -   If you have questions regarding any of my solutions, leave a comment and I will try to reply ASAP.
 -   Have fun Conding :)
 
+Scores
+======================
+#### Assignment 2
+  -   Compilation:  PASSED
+  -   Style:        PASSED
+  -  Findbugs:     No potential bugs found.
+  -       API:          PASSED
+  -       Correctness:  35/35 tests passed
+  -       Memory:       51/51 tests passed
+  -       Timing:       24/24 tests passed
+  -       **Score: 100.00%**
+
 F.A.Q
 ======================
 -   Missing Libraries? 
