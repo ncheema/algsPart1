@@ -7,15 +7,14 @@ Algrothims Part 1
 
 Scores
 ======================
-#### Assignment 2
-  -   Compilation:  PASSED
-  -   Style:        PASSED
-  -  Findbugs:     No potential bugs found.
-  -       API:          PASSED
-  -       Correctness:  35/35 tests passed
-  -       Memory:       51/51 tests passed
-  -       Timing:       24/24 tests passed
-  -       **Score: 100.00%**
+#### Assignment 2: Randomized Queues and Dequeues
+###
+		Source Files:
+			Deque.java
+			RandomizedQueue.java
+			Subset.java
+ 
+  -       Score: 100.00%
 
 F.A.Q
 ======================
