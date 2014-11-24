@@ -7,17 +7,18 @@ Algrothims Part 1
 
 Scores
 ======================
-#### Assignment 2: Randomized Queues and Dequeues
+##### Assignment 2: Randomized Queues and Dequeues
 ###
 		Source Files:
 			Deque.java
 			RandomizedQueue.java
 			Subset.java
+		Score: 100.00%
  
-  -       Score: 100.00%
+
 
 F.A.Q
 ======================
 -   Missing Libraries? 
-  -   http://algs4.cs.princeton.edu/code/algs4.jar   
-  -   http://introcs.cs.princeton.edu/java/stdlib/stdlib.jar
+  -   [algs4.jar](http://algs4.cs.princeton.edu/code/algs4.jar)  
+  -   [stdlib.jar](http://introcs.cs.princeton.edu/java/stdlib/stdlib.jar)
