@@ -8,7 +8,7 @@ import java.util.Comparator;
 public class Point implements Comparable<Point> {
 
     // compare points by slope
-    public final Comparator<Point> SLOPE_ORDER;       // YOUR DEFINITION HERE
+    public final Comparator<Point> SLOPE_ORDER = new SlopeOrder();       // YOUR DEFINITION HERE
 
     private final int x;                              // x coordinate
     private final int y;                              // y coordinate
@@ -31,17 +31,31 @@ public class Point implements Comparable<Point> {
 
     // slope between this point and that point
     public double slopeTo(Point that) {
-        /* YOUR CODE HERE */
+        if (that.x == this.x && that.y == this.y)   //degenerate line segment
+            return Double.NEGATIVE_INFINITY;
+        else if (that.x == this.x )   //vertical line segment
+            return Double.POSITIVE_INFINITY;
+        else if (that.y == this.y)   //horizontal line segment
+            return 0.0;
+        return (that.y - this.y) / (that.x - this.x);
     }
 
     // is this point lexicographically smaller than that one?
     // comparing y-coordinates and breaking ties by x-coordinates
     public int compareTo(Point that) {
         if (this.y == that.y)
-            return this.x - that.y;
+            return this.x - that.x;
         return this.y - that.y;
     }
 
+    private class SlopeOrder implements Comparator<Point> {
+
+        @Override
+        public int compare(Point p1, Point p2) {
+            double result = slopeTo(p1) - slopeTo(p2);
+            return (int) result;
+        }
+    }
     // return string representation of this point
     public String toString() {
         return "(" + x + ", " + y + ")";
