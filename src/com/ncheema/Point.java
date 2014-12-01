@@ -2,6 +2,7 @@ package com.ncheema;
 
 /**
  * Created by navjotcheema on 11/25/14.
+ * An immutable data type Point that represents a point in the plane
  */
 import java.util.Comparator;
 
@@ -37,7 +38,7 @@ public class Point implements Comparable<Point> {
             return Double.POSITIVE_INFINITY;
         else if (that.y == this.y)   //horizontal line segment
             return 0.0;
-        return (that.y - this.y) / (that.x - this.x);
+        return (double)(that.y - this.y) / (that.x - this.x);
     }
 
     // is this point lexicographically smaller than that one?
@@ -53,6 +54,8 @@ public class Point implements Comparable<Point> {
         @Override
         public int compare(Point p1, Point p2) {
             double result = slopeTo(p1) - slopeTo(p2);
+            if (result < 0.0) return -1;
+            if (result > 0.0) return 1;
             return (int) result;
         }
     }
