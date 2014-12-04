@@ -14,7 +14,7 @@ Assignments
 			RandomizedQueue.java
 			Subset.java
 ###
-		Assignment 3: Collinear Points
+		**Assignment 3: Collinear Points**
 		Source Files:
 			Point.java
 			Brute.java
