@@ -7,15 +7,14 @@ Algrothims Part 1
 
 Assignments
 ======================
-##### Assignment 2: Randomized Queues and Dequeues
-###
+
+		Assignment 2: Randomized Queues and Dequeues
 		Source Files:
 			Deque.java
 			RandomizedQueue.java
 			Subset.java
-		
-##### Assignment 3: Collinear Points
 ###
+		Assignment 3: Collinear Points
 		Source Files:
 			Point.java
 			Brute.java
