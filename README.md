@@ -5,15 +5,21 @@ Algrothims Part 1
 -   If you have questions regarding any of my solutions, leave a comment and I will try to reply ASAP.
 -   Have fun Conding :)
 
-Scores
+Assignments
 ======================
-##### Assignment 2: Randomized Queues and Dequeues
-###
+
+		Assignment 2: Randomized Queues and Dequeues
 		Source Files:
 			Deque.java
 			RandomizedQueue.java
 			Subset.java
-		Score: 100.00%
+###
+		Assignment 3: Collinear Points
+		Source Files:
+			Point.java
+			Brute.java
+			Fast.java
+		
  
 
 
