@@ -19,8 +19,7 @@ Assignments
 			Point.java
 			Brute.java
 			Fast.java
-		
- ###
+###
 		Assignment 4: 8 Puzzle
 		Source Files:
 			Board.java
