@@ -68,7 +68,27 @@ public class Board {
         }
         return  true;
     }
-    public Board twin()      {}              // a boadr that is obtained by exchanging two adjacent blocks in the same row
+
+    /**
+     * a board that is obtained by exchanging two adjacent blocks in the same row
+     * @return Board by exchanging any two adjacent blocks
+     */
+    public Board twin()      {
+        int [] [] tempBlocks = new int[blocks.length][blocks.length];
+        for (int row = 0 ; row < blocks.length; row++) {
+            for(int col = 0; col < blocks.length; col++)
+                tempBlocks[row][col] = this.blocks[row][col];
+        }
+        //find valid row, if the first row is not valid,
+        //the we know the second row is valid since there is only one empty block
+        int validRow = 0;
+        if (tempBlocks[validRow][0] == 0 || tempBlocks[validRow][1] == 0 )
+            validRow = 1;
+        int tempValue = tempBlocks[validRow][0];
+        tempBlocks[validRow][0] = tempBlocks[validRow][1];
+        tempBlocks[validRow][1] = tempValue;
+        return new Board(tempBlocks);
+    }
     public boolean equals(Object y){}        // does this blocks equal y?
     public Iterable<Board> neighbors() {}     // all neighboring boards
     public String toString() {}               // string representation of this blocks (in the output format specified below)
