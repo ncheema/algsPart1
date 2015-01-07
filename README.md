@@ -20,7 +20,12 @@ Assignments
 			Brute.java
 			Fast.java
 		
- 
+ ###
+		Assignment 4: 8 Puzzle
+		Source Files:
+			Board.java
+			Solver.java
+			
 
 
 F.A.Q
