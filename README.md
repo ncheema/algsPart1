@@ -1,6 +1,6 @@
 Algrothims Part 1
 ======================
--   These are my solutions for the  assignments from the Algorithms, Part I course at coursera[ Course Website!](https://class.coursera.org/algs4partI-006).
+-   These are my solutions for the  assignments from the Algorithms, Part I course at coursera[ [Course Website]](https://class.coursera.org/algs4partI-006).
 -   Feel free to use my solutions as a guide for the assignments. 
 -   If you have questions regarding any of my solutions, leave a comment and I will try to reply ASAP.
 -   Have fun Conding :)
@@ -19,8 +19,12 @@ Assignments
 			Point.java
 			Brute.java
 			Fast.java
-		
- 
+###
+		Assignment 4: 8 Puzzle
+		Source Files:
+			Board.java
+			Solver.java
+			
 
 
 F.A.Q
