@@ -42,9 +42,32 @@ public class Board {
      * @return sum of Manhattan distances
      */
     public int manhattan() {
-    
+        int total = 0;
+        for (int row = 0; row < blocks.length; row++) {
+            for (int col = 0; col < blocks.length; col++) {
+                int currentBlock = blocks[row][col];
+                if (currentBlock != 0 && currentBlock != (row * blocks.length) + 1 ){
+                    int rowShift = (currentBlock-1) / blocks.length;
+                    int colShift = (currentBlock-1) % blocks.length;
+                    total += rowShift+colShift;
+                }
+            }
+        }
+        return total;
     }
-    public boolean isGoal() {}               // is this blocks the goal blocks?
+
+    /**
+     * is this blocks the goal blocks?
+     * @return true if blocks are valid, else return false
+     */
+    public boolean isGoal() {
+        for (int row = 0; row < blocks.length; row++) {
+            for (int col = 0; col < blocks.length; col++)
+                if (blocks[row][col] != 0 && blocks[row][col] != (row * blocks.length)+1)
+                    return false;
+        }
+        return  true;
+    }
     public Board twin()      {}              // a boadr that is obtained by exchanging two adjacent blocks in the same row
     public boolean equals(Object y){}        // does this blocks equal y?
     public Iterable<Board> neighbors() {}     // all neighboring boards
