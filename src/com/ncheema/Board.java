@@ -4,6 +4,8 @@ package com.ncheema;
  * Created by navjotcheema on 1/5/15.
  */
 public class Board {
+    private  int [] [] blocks;
+    private int size;
 
     /**
      * construct a blocks from an N-by-N array of blocks
@@ -19,7 +21,6 @@ public class Board {
     // blocks dimension N
     public int dimension() {
         return blocks.length;
-
     }
 
     /**
@@ -89,12 +90,52 @@ public class Board {
         tempBlocks[validRow][1] = tempValue;
         return new Board(tempBlocks);
     }
-    public boolean equals(Object y){}        // does this blocks equal y?
-    public Iterable<Board> neighbors() {}     // all neighboring boards
-    public String toString() {}               // string representation of this blocks (in the output format specified below)
 
-    private  int [] [] blocks;
-    private int size;
+    /**
+     *  does this blocks equal y?
+     * @param y the other board
+     * @return true if this board is equal to y; false otherwise
+     */
+    public boolean equals(Object y){
+        if (y == this) return true;
+        if (y == null) return false;
+        if (y.getClass() != this.getClass()) return false;
+        Board that = (Board) y;
+        for (int row = 0; row < this.blocks.length; row++) {
+            for (int col = 0 ; col < this.blocks.length; col++) {
+                if (this.blocks[row][col] != that.blocks[row][col])
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * all neighboring boards
+     * @return
+     */
+    public Iterable<Board> neighbors() {
+
+    }
+
+    /**
+     * string representation of this blocks (in the output format specified below)
+     * @return String representsation of blocks in order
+     */
+    public String toString() {
+        //using StringBuilder instead of  + concatention, since StringBuilder.append is faster
+        StringBuilder sBuilder = new StringBuilder();
+        for (int row = 0; row < blocks.length; row++) {
+            for (int col = 0; col < blocks.length; col++) {
+                sBuilder.append(blocks[row][col]);
+                sBuilder.append(" ");
+            }
+            sBuilder.append("\n");
+        }
+        return sBuilder.toString();
+    }
+
+
 
 
     //  public static void main(String[] args) // unit tests (not graded)
