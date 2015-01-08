@@ -65,7 +65,7 @@ public class Board {
     public boolean isGoal() {
         for (int row = 0; row < blocks.length; row++) {
             for (int col = 0; col < blocks.length; col++)
-                if (blocks[row][col] != 0 && blocks[row][col] != (row * blocks.length)+1)
+                if (blocks[row][col] != 0 && blocks[row][col] != (row * blocks.length)+col+1)
                     return false;
         }
         return  true;
@@ -199,15 +199,16 @@ public class Board {
 
 
 
-    // unit tests (not graded)
+    // unit tests
     public static void main(String[] args) {
-        int [][] blocks = {{8,1,3}, {4,0,2}, {7,6,5} };
+        int [] [] blocks  = {{1,2,3}, {4,5,6}, {7,8,0}};
+        int [][] blocks1 = {{8,1,3}, {4,0,2}, {7,6,5}};
         Board b = new Board(blocks);
         StdOut.print(b);
         StdOut.println("Dimensions: " + b.dimension());
         StdOut.println("Hamming Score: "+b.hamming());
         StdOut.println("Manhattan Score: "+b.manhattan());
-
+        StdOut.println(("Is this goal block: ") + (b.isGoal() ? "Yes" : "No"));
 
 
     }
