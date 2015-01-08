@@ -48,9 +48,9 @@ public class Board {
         for (int row = 0; row < blocks.length; row++) {
             for (int col = 0; col < blocks.length; col++) {
                 int currentBlock = blocks[row][col];
-                if (currentBlock != 0 && currentBlock != (row * blocks.length) + 1 ){
-                    int rowShift = (currentBlock-1) / blocks.length;
-                    int colShift = (currentBlock-1) % blocks.length;
+                if (currentBlock != 0 && currentBlock != (row * blocks.length) + col+1 ){
+                    int rowShift = Math.abs(row - (currentBlock-1) / blocks.length);
+                    int colShift = Math.abs(col - (currentBlock-1) % blocks.length);
                     total += rowShift+colShift;
                 }
             }
@@ -201,11 +201,14 @@ public class Board {
 
     // unit tests (not graded)
     public static void main(String[] args) {
-        int [][] blocks = {{1,2,0}, {4,5,6}, {7,8,3} };
+        int [][] blocks = {{8,1,3}, {4,0,2}, {7,6,5} };
         Board b = new Board(blocks);
         StdOut.print(b);
         StdOut.println("Dimensions: " + b.dimension());
         StdOut.println("Hamming Score: "+b.hamming());
+        StdOut.println("Manhattan Score: "+b.manhattan());
+
+
 
     }
 }
