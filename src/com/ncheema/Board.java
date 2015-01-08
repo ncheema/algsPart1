@@ -1,5 +1,7 @@
 package com.ncheema;
 
+import java.util.Stack;
+
 /**
  * Created by navjotcheema on 1/5/15.
  */
@@ -115,7 +117,68 @@ public class Board {
      * @return
      */
     public Iterable<Board> neighbors() {
+        Stack<Board> stack = new Stack<Board>();
 
+        //first find the empty block index
+        int indexRowEmptyBlock = -1;
+        int indexColEmptyBlock = -1;
+        int [] [] tempBlocks = new int [this.blocks.length][this.blocks.length];
+        boolean foundEmptyBlock = false;
+        for (int row = 0; row < this.blocks.length && !foundEmptyBlock; row++) {
+            for (int col = 0; col < this.blocks.length; col++) {
+                if (this.blocks[row][col] == 0) {
+                    indexRowEmptyBlock = row;
+                    indexColEmptyBlock = col;
+                    foundEmptyBlock = true;
+                    break;
+                }
+
+            }
+        }
+        //check for four cases and queue them if valid
+        // check if the block above the empty block is valid
+        if (indexRowEmptyBlock-1 >=0) {
+            for (int row = 0 ; row < blocks.length; row++) {
+                for (int col = 0; col < blocks.length; col++ )
+                    tempBlocks[row][col] = this.blocks[row][col];
+            }
+            tempBlocks[indexRowEmptyBlock][indexColEmptyBlock] = tempBlocks[indexRowEmptyBlock-1][indexColEmptyBlock];
+            tempBlocks[indexRowEmptyBlock-1][indexColEmptyBlock] = 0;
+            stack.add(new Board(tempBlocks));
+        }
+
+        //check if the block below is valid
+        if (indexRowEmptyBlock+1 < this.blocks.length) {
+            for (int row = 0 ; row < blocks.length; row++) {
+                for (int col = 0; col < blocks.length; col++ )
+                    tempBlocks[row][col] = this.blocks[row][col];
+            }
+            tempBlocks[indexRowEmptyBlock][indexColEmptyBlock] = tempBlocks[indexRowEmptyBlock+1][indexColEmptyBlock];
+            tempBlocks[indexRowEmptyBlock+1][indexColEmptyBlock] = 0;
+            stack.add(new Board(tempBlocks));
+        }
+
+        //check if the left block is valid
+        if (indexColEmptyBlock-1 >= 0) {
+            for (int row = 0 ; row < blocks.length; row++) {
+                for (int col = 0; col < blocks.length; col++ )
+                    tempBlocks[row][col] = this.blocks[row][col];
+            }
+            tempBlocks[indexRowEmptyBlock][indexColEmptyBlock] = tempBlocks[indexRowEmptyBlock][indexColEmptyBlock-1];
+            tempBlocks[indexRowEmptyBlock][indexColEmptyBlock-1] = 0;
+            stack.add(new Board(tempBlocks));
+        }
+        //check if the right block is valid
+        if (indexColEmptyBlock+1 < this.blocks.length) {
+            for (int row = 0 ; row < blocks.length; row++) {
+                for (int col = 0; col < blocks.length; col++ )
+                    tempBlocks[row][col] = this.blocks[row][col];
+            }
+            tempBlocks[indexRowEmptyBlock][indexColEmptyBlock] = tempBlocks[indexRowEmptyBlock][indexColEmptyBlock+1];
+            tempBlocks[indexRowEmptyBlock][indexColEmptyBlock+1] = 0;
+            stack.add(new Board(tempBlocks));
+        }
+        return stack;
     }
 
     /**
