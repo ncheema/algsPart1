@@ -16,8 +16,7 @@ public class Board {
     public Board(int[][] blocks)  {
         this.blocks = new int [blocks.length][blocks.length];
         for (int row = 0 ; row < blocks.length; row++) {
-            for (int col = 0; col < blocks.length; col++ )
-                this.blocks[row][col] = blocks[row][col];
+            System.arraycopy(blocks[row],0,this.blocks[row],0,blocks.length);
         }
     }
     // blocks dimension N
@@ -33,7 +32,7 @@ public class Board {
         int counter = -1;   //to not include the last/empty block
         for (int row = 0; row < blocks.length; row++) {
             for (int col = 0; col < blocks.length; col++)
-                if (blocks[row][col] != (row * blocks.length)+1)
+                if (blocks[row][col] != (row * blocks.length)+col+1)
                     counter++;
         }
         return  counter;
@@ -200,6 +199,13 @@ public class Board {
 
 
 
+    // unit tests (not graded)
+    public static void main(String[] args) {
+        int [][] blocks = {{1,2,0}, {4,5,6}, {7,8,3} };
+        Board b = new Board(blocks);
+        StdOut.print(b);
+        StdOut.println("Dimensions: " + b.dimension());
+        StdOut.println("Hamming Score: "+b.hamming());
 
-    //  public static void main(String[] args) // unit tests (not graded)
+    }
 }
