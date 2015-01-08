@@ -201,7 +201,7 @@ public class Board {
 
     // unit tests
     public static void main(String[] args) {
-        int [] [] blocks  = {{1,2,3}, {4,5,6}, {7,8,0}};
+        int [] [] blocks  = {{1,2,3}, {4,0,6}, {7,8,5}};
         int [][] blocks1 = {{8,1,3}, {4,0,2}, {7,6,5}};
         Board b = new Board(blocks);
         StdOut.print(b);
@@ -209,7 +209,14 @@ public class Board {
         StdOut.println("Hamming Score: "+b.hamming());
         StdOut.println("Manhattan Score: "+b.manhattan());
         StdOut.println(("Is this goal block: ") + (b.isGoal() ? "Yes" : "No"));
+        //testing twin
+        Board twin = b.twin();
+        StdOut.print(twin);
+        Board b1 = new Board (blocks);
+        StdOut.println(("Are Boards equal: ") + (b1.equals(b) ? "yes" : "no"));
 
-
+        //neighbors
+        for (Board bb : b.neighbors())
+            StdOut.print(bb+"\n");
     }
 }
