@@ -1,31 +1,40 @@
 package com.ncheema;
 
 import java.util.Comparator;
+import java.util.Stack;
 
 /**
  * Created by navjotcheema on 1/5/15.
  */
 public class Solver {
-    MinPQ<Board> minPQ;
+    MinPQ<Node> minPQ;
+    MinPQ<Node> twinMinPQ;
+    private Stack<Board> boardStack;
+    private Node parent;
+    private Node answerNode;
+    private boolean isSolvable = false;
+    private boolean twinIsSolvable = false;
+    //MinPQ requires non netural order of comparison
     Comparator<Node> boardComparator = new BoardComparator();
 
-    private class BoardComparator implements Comparator<Node> {
-        
-    }
+
 
     private class Node {
-        Board board;
-        Node parent;
+        private Board board;
+        private Node parent;
+        private int priority;
+        private int moves;
 
-        //constructor for root
-        public Node(Board b) {
-            this.board = b;
-            this.parent = null; //root node
-        }
-        //constructor for child nodes
-        public Node(Board b, Node parent) {
+        /**
+         * Sets board, its parent and priority
+         * @param b
+         * @param parent
+         */
+        public Node(Board b, Node parent, int moves) {
             this.board = b;
             this.parent = parent;
+            this.moves = moves;
+            this.priority = this.board.manhattan() + moves;
         }
 
 
@@ -36,10 +45,35 @@ public class Solver {
      * @param initial
      */
     public Solver(Board initial)   {
-        minPQ = new MinPQ<Board>();
-        minPQ.insert(initial);  //add the initial board
+        answerNode = null;
+        minPQ = new MinPQ<Node>(boardComparator);
+        twinMinPQ = new MinPQ<Node>(boardComparator);
+        parent = new Node(initial,null,0);
+        minPQ.insert(parent);  //add the initial board
+        while (!isSolvable && !twinIsSolvable ) {
+            Node currentNode = minPQ.delMin();
+            Node twinCurrentNode = twinMinPQ.delMin();
+            //check if current board is correct answer
+            if (currentNode.board.isGoal()) {
+                isSolvable = true;
+                answerNode = currentNode;
+            }
+            //check if twin board is the correct
+            else if (twinCurrentNode.board.isGoal()) {
+                twinIsSolvable = true;
+            }
+            //enqueue the minPQ and TwinMinPQ with thier respective neighbors
+            else {
+                //enqueue minPQ
+                for (Board b : currentNode.board.neighbors())
+                    minPQ.insert(new Node(b, currentNode, currentNode.moves + 1));
+                //enqueue TwinMinPQ
+                for (Board b : twinCurrentNode.board.neighbors())
+                    twinMinPQ.insert(new Node(b,null,twinCurrentNode.moves + 1));
+            }
 
-        minPQ.insert(initial.neighbors());
+
+        }
 
     }
 
@@ -48,7 +82,7 @@ public class Solver {
      * @return true if board is solvable, false otherwise
      */
     public boolean isSolvable(){
-
+        return isSolvable;
     }
 
     /**
@@ -62,6 +96,12 @@ public class Solver {
         return -1;
     }
     public Iterable<Board> solution()      // sequence of boards in a shortest solution; null if unsolvable
+    private class BoardComparator implements Comparator<Node> {
+        public int compare (Node n1, Node n2) {
+            return n1.priority - n2.priority;
+        }
+    }
+
     public static void main(String[] args) {} // solve a slider puzzle (given below)
 
 }
