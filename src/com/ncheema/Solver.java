@@ -91,11 +91,22 @@ public class Solver {
      */
     public int moves() {
         if (isSolvable()) {
+            return answerNode.moves;
 
         }
         return -1;
     }
-    public Iterable<Board> solution()      // sequence of boards in a shortest solution; null if unsolvable
+    // sequence of boards in a shortest solution; null if unsolvable
+    public Iterable<Board> solution() {
+        Stack<Board> boardStack = new Stack<Board>();
+        Node temp = answerNode;
+        while(temp != null){
+            boardStack.add(temp.board);
+            temp = temp.parent;
+        }
+        return boardStack;
+
+    }
     private class BoardComparator implements Comparator<Node> {
         public int compare (Node n1, Node n2) {
             return n1.priority - n2.priority;
