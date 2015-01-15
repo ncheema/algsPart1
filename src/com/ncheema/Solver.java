@@ -1,6 +1,7 @@
 package com.ncheema;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -99,13 +100,13 @@ public class Solver {
     }
     // sequence of boards in a shortest solution; null if unsolvable
     public Iterable<Board> solution() {
-        Stack<Board> boardStack = new Stack<Board>();
+        LinkedList<Board> boardList = new LinkedList<Board>();
         Node temp = answerNode;
         while(temp != null){
-            boardStack.push(temp.board);
+            boardList.addFirst(temp.board);
             temp = temp.parent;
         }
-        return boardStack;
+        return boardList;
 
     }
     private class BoardComparator implements Comparator<Node> {
@@ -119,7 +120,8 @@ public class Solver {
         int [][] blocks1 = {{8,1,3}, {4,0,2}, {7,6,5}};
         Board b = new Board(blocks);
         Solver solver = new Solver(b);
-        StdOut.print(solver.isSolvable() ? "yes" : "no");
+        StdOut.println(solver.isSolvable() ? "yes" : "no");
+        StdOut.println("Minimum moves required: "+solver.moves());
         for (Board sol : solver.solution())
             StdOut.println(sol+"\n");
     }
