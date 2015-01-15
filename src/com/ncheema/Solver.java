@@ -50,6 +50,7 @@ public class Solver {
         twinMinPQ = new MinPQ<Node>(boardComparator);
         parent = new Node(initial,null,0);
         minPQ.insert(parent);  //add the initial board
+        twinMinPQ.insert(new Node(initial.twin(),null,0));
         while (!isSolvable && !twinIsSolvable ) {
             Node currentNode = minPQ.delMin();
             Node twinCurrentNode = twinMinPQ.delMin();
@@ -101,7 +102,7 @@ public class Solver {
         Stack<Board> boardStack = new Stack<Board>();
         Node temp = answerNode;
         while(temp != null){
-            boardStack.add(temp.board);
+            boardStack.push(temp.board);
             temp = temp.parent;
         }
         return boardStack;
@@ -112,7 +113,15 @@ public class Solver {
             return n1.priority - n2.priority;
         }
     }
-
-    public static void main(String[] args) {} // solve a slider puzzle (given below)
+    // solve a slider puzzle (given below)
+    public static void main(String[] args) {
+        int [] [] blocks  = {{0,1,3}, {4,2,5}, {7,8,6}};
+        int [][] blocks1 = {{8,1,3}, {4,0,2}, {7,6,5}};
+        Board b = new Board(blocks);
+        Solver solver = new Solver(b);
+        StdOut.print(solver.isSolvable() ? "yes" : "no");
+        for (Board sol : solver.solution())
+            StdOut.println(sol+"\n");
+    }
 
 }

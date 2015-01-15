@@ -185,17 +185,18 @@ public class Board {
      * @return String representsation of blocks in order
      */
     public String toString() {
-        //using StringBuilder instead of  + concatention, since StringBuilder.append is faster
-        StringBuilder sBuilder = new StringBuilder();
-        for (int row = 0; row < blocks.length; row++) {
-            for (int col = 0; col < blocks.length; col++) {
-                sBuilder.append(blocks[row][col]);
-                sBuilder.append(" ");
+        StringBuilder s = new StringBuilder();
+        s.append(blocks.length + "\n");
+        for (int i = 0; i < blocks.length; i++) {
+            for (int j = 0; j < blocks.length; j++) {
+                s.append(String.format("%2d ", blocks[i][j]));
             }
-            sBuilder.append("\n");
+            s.append("\n");
         }
-        return sBuilder.toString();
+        return s.toString();
     }
+
+    
 
 
 
